@@ -8,6 +8,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/get_it_helper.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../services/auth_service.dart';
 import '../services/lessons_service.dart';
 import '../services/third_party_services_module.dart';
 
@@ -17,10 +18,13 @@ import '../services/third_party_services_module.dart';
 void $initGetIt(GetIt g, {String environment}) {
   final gh = GetItHelper(g, environment);
   final thirdPartyServicesModule = _$ThirdPartyServicesModule();
+  gh.lazySingleton<AuthService>(() => AuthService());
   gh.lazySingleton<DialogService>(() => thirdPartyServicesModule.dialogService);
   gh.factory<LessonsService>(() => LessonsService());
   gh.lazySingleton<NavigationService>(
       () => thirdPartyServicesModule.navigationService);
+  gh.lazySingleton<SnackbarService>(
+      () => thirdPartyServicesModule.snackBarService);
 }
 
 class _$ThirdPartyServicesModule extends ThirdPartyServicesModule {
@@ -28,4 +32,6 @@ class _$ThirdPartyServicesModule extends ThirdPartyServicesModule {
   DialogService get dialogService => DialogService();
   @override
   NavigationService get navigationService => NavigationService();
+  @override
+  SnackbarService get snackBarService => SnackbarService();
 }

@@ -9,7 +9,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0XFF08080A),
         body: SafeArea(
           child: Container(
             decoration: BoxDecoration(
@@ -86,7 +86,7 @@ class LoginView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10.0)
+                          SizedBox(height: 1.0)
                         ],
                       ),
                     ),
