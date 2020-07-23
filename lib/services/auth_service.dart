@@ -32,19 +32,10 @@ class AuthService {
       return AuthResult(
           status: AuthResultStatus.error, message: result['error']);
     } else if (result.containsKey('user')) {
-      setCurrentUser(result['user']);
+      _currentUser = User.fromJson(result['user']);
       return AuthResult(status: AuthResultStatus.success);
     }
     return null;
-  }
-
-  void setCurrentUser(dynamic userData) {
-    _currentUser = User(
-      id: userData['id'],
-      firstName: userData['firstName'],
-      lastName: userData['lastName'],
-      email: userData['email'],
-    );
   }
 
   User get currentUser => _currentUser;

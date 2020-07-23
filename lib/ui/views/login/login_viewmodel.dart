@@ -10,6 +10,7 @@ import 'package:stacked_services/stacked_services.dart';
 class LoginViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final AuthService _authService = locator<AuthService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   final FocusNode focusNode1 = FocusNode();
   final FocusNode focusNode2 = FocusNode();
@@ -19,6 +20,7 @@ class LoginViewModel extends BaseViewModel {
 
   String submittedEmail;
   String submittedPassword;
+  bool showSpinner = false;
 
   LoginViewModel() {
     focusNode1.addListener(() {
@@ -42,19 +44,36 @@ class LoginViewModel extends BaseViewModel {
   Function(String value) get passwordValidator => _passwordValidator;
 
   void onSubmit() {
+    FocusManager.instance.primaryFocus.unfocus();
     if (formKey1.currentState.validate() && formKey2.currentState.validate()) {
       submitLoginDetailstoServer();
     }
   }
 
+  void startSpinner() {
+    showSpinner = true;
+    notifyListeners();
+  }
+
+  void stopSpinner() {
+    showSpinner = false;
+    notifyListeners();
+  }
+
   Future<void> submitLoginDetailstoServer() async {
+    startSpinner();
     AuthResult result = await _authService.signInWithEmail(
       email: submittedEmail,
       password: submittedPassword,
     );
 
+    stopSpinner();
     if (result.status == AuthResultStatus.success) {
       _navigationService.navigateTo(Routes.lessonsView);
+      _dialogService.showDialog(
+        title: 'Welcome ${_authService.currentUser.firstName}',
+        description: 'Thanks for logging in!',
+      );
     } else {
       JdrSnackBar.show(
         message: result.message,

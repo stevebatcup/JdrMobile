@@ -2,7 +2,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 // const String host = 'https://www.jazzdrummersresource.com';
-const String host = 'http://localhost:3000';
+// const String host = 'http://localhost:3000';
+const String host = 'http://10.0.2.2:3000';
 
 class JdrNetworkingService {
   final Map<String, String> headers = {

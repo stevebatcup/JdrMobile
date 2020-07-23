@@ -1,8 +1,13 @@
 class User {
-  final int id;
-  final String firstName;
-  final String lastName;
-  final String email;
+  int id;
+  String firstName;
+  String lastName;
+  String email;
 
-  User({this.id, this.firstName, this.lastName, this.email});
+  User.fromJson(userData) {
+    id = userData['id'];
+    firstName = userData['firstName'];
+    lastName = userData['lastName'];
+    email = userData['email'];
+  }
 }
