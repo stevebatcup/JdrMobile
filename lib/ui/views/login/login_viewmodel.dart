@@ -1,11 +1,9 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/app/router.gr.dart';
 import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/ui/components/jdr_snack_bar.dart';
-import 'package:jdr/ui/utils/color_scheme.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

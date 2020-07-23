@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:jdr/models/user.dart';
-import 'networking_service.dart';
+import 'jdr_networking_service.dart';
 
-const loginUrl = "http://localhost:3000/users/login";
+const loginEndPoint = '/users/login';
 
 enum AuthResultStatus {
   success,
@@ -27,7 +27,7 @@ class AuthService {
       "user[password]": password,
     };
     var result =
-        await _networkService.postData(url: loginUrl, postData: postData);
+        await _networkService.postData(path: loginEndPoint, postData: postData);
     if (result.containsKey('error')) {
       return AuthResult(
           status: AuthResultStatus.error, message: result['error']);
