@@ -27,10 +27,13 @@ class LoginView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.only(top: 50),
-                      width: MediaQuery.of(context).size.width * 0.55,
-                      child: Image.asset('assets/images/logo.png'),
+                    Hero(
+                      tag: 'logo',
+                      child: Container(
+                        padding: EdgeInsets.only(top: 50),
+                        width: MediaQuery.of(context).size.width * 0.55,
+                        child: Image.asset('assets/images/logo.png'),
+                      ),
                     ),
                     Material(
                       color: Colors.transparent,

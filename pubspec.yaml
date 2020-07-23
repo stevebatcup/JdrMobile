@@ -33,6 +33,7 @@ dependencies:
   email_validator: '^1.0.0'
   get: ^3.4.0
   modal_progress_hud: ^0.1.3
+  font_awesome_flutter: ^8.8.1
 
 
 dev_dependencies:

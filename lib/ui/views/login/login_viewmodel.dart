@@ -23,16 +23,20 @@ class LoginViewModel extends BaseViewModel {
   bool showSpinner = false;
 
   LoginViewModel() {
-    focusNode1.addListener(() {
-      if (!focusNode1.hasFocus) {
-        formKey1.currentState.validate();
-      }
-    });
-    focusNode2.addListener(() {
-      if (!focusNode2.hasFocus) {
-        formKey2.currentState.validate();
-      }
-    });
+    if (_authService.currentUser != null) {
+      _navigationService.replaceWith(Routes.lessonsView);
+    } else {
+      focusNode1.addListener(() {
+        if (!focusNode1.hasFocus) {
+          formKey1.currentState.validate();
+        }
+      });
+      focusNode2.addListener(() {
+        if (!focusNode2.hasFocus) {
+          formKey2.currentState.validate();
+        }
+      });
+    }
   }
 
   final Function(String value) _emailValidator = (value) =>
@@ -69,11 +73,13 @@ class LoginViewModel extends BaseViewModel {
 
     stopSpinner();
     if (result.status == AuthResultStatus.success) {
-      _navigationService.navigateTo(Routes.lessonsView);
-      _dialogService.showDialog(
-        title: 'Welcome ${_authService.currentUser.firstName}',
-        description: 'Thanks for logging in!',
-      );
+      _navigationService.replaceWith(Routes.lessonsView);
+      _dialogService
+          .showDialog(
+            title: 'Welcome ${_authService.currentUser.firstName}',
+            description: 'Thanks for logging in!',
+          )
+          .catchError((e) {});
     } else {
       JdrSnackBar.show(
         message: result.message,

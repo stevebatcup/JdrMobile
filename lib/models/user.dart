@@ -10,4 +10,6 @@ class User {
     lastName = userData['lastName'];
     email = userData['email'];
   }
+
+  String get fullName => '$firstName $lastName';
 }

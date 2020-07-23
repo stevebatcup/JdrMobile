@@ -19,24 +19,47 @@ class AuthResult {
 @lazySingleton
 class AuthService {
   JdrNetworkingService _networkService = JdrNetworkingService();
+
   User _currentUser;
+  User get currentUser => _currentUser;
+
+  String _sessionCookie;
+  String get sessionCookie => _sessionCookie;
 
   Future<AuthResult> signInWithEmail({String email, String password}) async {
     Map<String, String> postData = {
       "user[email]": email,
       "user[password]": password,
     };
-    var result =
-        await _networkService.postData(path: loginEndPoint, postData: postData);
-    if (result.containsKey('error')) {
+    JdrNetworkingResponse result =
+        await _networkService.postData(loginEndPoint, postData: postData);
+    if (result.jsonData.containsKey('error')) {
       return AuthResult(
-          status: AuthResultStatus.error, message: result['error']);
-    } else if (result.containsKey('user')) {
-      _currentUser = User.fromJson(result['user']);
+          status: AuthResultStatus.error, message: result.jsonData['error']);
+    } else if (result.jsonData.containsKey('user')) {
+      updateSessionCookie(result);
+      _currentUser = User.fromJson(result.jsonData['user']);
       return AuthResult(status: AuthResultStatus.success);
     }
     return null;
   }
 
-  User get currentUser => _currentUser;
+  void updateSessionCookie(JdrNetworkingResponse result) {
+    String rawCookie = result.cookie;
+    if (rawCookie != null) {
+      int index = rawCookie.indexOf(';');
+      _sessionCookie =
+          (index == -1) ? rawCookie : rawCookie.substring(0, index);
+    }
+  }
+
+  Future<bool> signOut() async {
+    bool result = await _networkService.delete(
+      "/users/logout",
+      sessionCookie: _sessionCookie,
+    );
+    _sessionCookie = null;
+    _currentUser = null;
+    return result;
+  }
 }
