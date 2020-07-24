@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:jdr/app/locator.dart';
+import 'package:jdr/app/router.gr.dart';
 import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/services/jdr_networking_service.dart';
-import 'package:jdr/ui/views/courses/course_detail_view.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../jdr_base_viewmodel.dart';
 
@@ -28,6 +28,6 @@ class CoursesViewModel extends JdrBaseViewModel {
   }
 
   void showCourse() {
-    _navigationService.navigateToView(CourseDetailView());
+    _navigationService.navigateTo(Routes.courseDetailView);
   }
 }

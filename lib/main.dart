@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/ui/utils/color_scheme.dart';
 import 'package:jdr/ui/utils/text_theme.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -7,11 +8,21 @@ import 'app/router.gr.dart';
 
 void main() {
   setupLocator();
-  runApp(JdrApp());
+  AuthService _authService = locator<AuthService>();
+  WidgetsFlutterBinding.ensureInitialized();
+  _authService.loadCurrentUserDetails().then((status) {
+    if (status == true) {
+      runApp(JdrApp(intitialRoute: Routes.homeView));
+    } else {
+      runApp(JdrApp(intitialRoute: Routes.loginView));
+    }
+  });
 }
 
 class JdrApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final String intitialRoute;
+  JdrApp({this.intitialRoute});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +33,7 @@ class JdrApp extends StatelessWidget {
         textTheme: textTheme,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: Routes.loginView,
+      initialRoute: intitialRoute,
       onGenerateRoute: Router().onGenerateRoute,
     );
   }

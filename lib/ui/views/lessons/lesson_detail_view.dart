@@ -6,7 +6,7 @@ class LessonDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: JdrAppBar(),
-      body: Container(child: Text("Lesson detail")),
+      body: Center(child: Container(child: Text("Lesson detail"))),
     );
   }
 }

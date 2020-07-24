@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:stacked/stacked.dart';
-
 import 'lessons_viewmodel.dart';
 
 class LessonsView extends StatelessWidget {

@@ -4,6 +4,8 @@ class User {
   String lastName;
   String email;
 
+  User({this.id, this.firstName, this.lastName, this.email});
+
   User.fromJson(userData) {
     id = userData['id'];
     firstName = userData['firstName'];

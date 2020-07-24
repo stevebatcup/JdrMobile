@@ -11,6 +11,7 @@ import 'package:stacked_services/stacked_services.dart';
 import '../services/auth_service.dart';
 import '../services/lessons_service.dart';
 import '../services/third_party_services_module.dart';
+import '../ui/views/courses/course_detail_viewmodel.dart';
 import '../ui/views/courses/courses_viewmodel.dart';
 import '../ui/views/lessons/lessons_viewmodel.dart';
 
@@ -20,7 +21,6 @@ import '../ui/views/lessons/lessons_viewmodel.dart';
 void $initGetIt(GetIt g, {String environment}) {
   final gh = GetItHelper(g, environment);
   final thirdPartyServicesModule = _$ThirdPartyServicesModule();
-  gh.lazySingleton<AuthService>(() => AuthService());
   gh.lazySingleton<DialogService>(() => thirdPartyServicesModule.dialogService);
   gh.factory<LessonsService>(() => LessonsService());
   gh.lazySingleton<NavigationService>(
@@ -29,6 +29,8 @@ void $initGetIt(GetIt g, {String environment}) {
       () => thirdPartyServicesModule.snackBarService);
 
   // Eager singletons must be registered in the right order
+  gh.singleton<AuthService>(AuthService());
+  gh.singleton<CourseDetailsViewModel>(CourseDetailsViewModel());
   gh.singleton<CoursesViewModel>(CoursesViewModel());
   gh.singleton<LessonsViewModel>(LessonsViewModel());
 }

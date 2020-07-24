@@ -8,8 +8,8 @@ import 'package:jdr/ui/views/lessons/lessons_view.dart';
 import 'package:jdr/ui/views/login/login_view.dart';
 
 @MaterialAutoRouter(routes: [
-  MaterialRoute(page: LoginView, initial: true),
-  MaterialRoute(page: HomeView),
+  MaterialRoute(page: HomeView, initial: true),
+  MaterialRoute(page: LoginView),
   MaterialRoute(page: LessonsView),
   MaterialRoute(page: LessonDetailView),
   MaterialRoute(page: CoursesView),

@@ -17,15 +17,15 @@ import '../ui/views/lessons/lessons_view.dart';
 import '../ui/views/login/login_view.dart';
 
 class Routes {
-  static const String loginView = '/';
-  static const String homeView = '/home-view';
+  static const String homeView = '/';
+  static const String loginView = '/login-view';
   static const String lessonsView = '/lessons-view';
   static const String lessonDetailView = '/lesson-detail-view';
   static const String coursesView = '/courses-view';
   static const String courseDetailView = '/course-detail-view';
   static const all = <String>{
-    loginView,
     homeView,
+    loginView,
     lessonsView,
     lessonDetailView,
     coursesView,
@@ -37,8 +37,8 @@ class Router extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
-    RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.homeView, page: HomeView),
+    RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.lessonsView, page: LessonsView),
     RouteDef(Routes.lessonDetailView, page: LessonDetailView),
     RouteDef(Routes.coursesView, page: CoursesView),
@@ -47,15 +47,15 @@ class Router extends RouterBase {
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, AutoRouteFactory>{
-    LoginView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => LoginView(),
-        settings: data,
-      );
-    },
     HomeView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => HomeView(),
+        settings: data,
+      );
+    },
+    LoginView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => LoginView(),
         settings: data,
       );
     },
