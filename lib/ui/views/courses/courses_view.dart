@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:stacked/stacked.dart';
 
-import 'lessons_viewmodel.dart';
+import 'courses_viewmodel.dart';
 
-class LessonsView extends StatelessWidget {
+class CoursesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<LessonsViewModel>.reactive(
+    return ViewModelBuilder<CoursesViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => Center(
@@ -16,21 +16,21 @@ class LessonsView extends StatelessWidget {
           children: <Widget>[
             RaisedButton(
               onPressed: () {
-                model.getLessons();
+                model.getCourses();
               },
-              child: Text('Get Lessons'),
+              child: Text('Get Courses'),
             ),
             SizedBox(height: 10),
             RaisedButton(
               onPressed: () {
-                model.showLesson();
+                model.showCourse();
               },
-              child: Text('Show Lesson'),
+              child: Text('Show Course'),
             ),
           ],
         ),
       ),
-      viewModelBuilder: () => locator<LessonsViewModel>(),
+      viewModelBuilder: () => locator<CoursesViewModel>(),
     );
   }
 }

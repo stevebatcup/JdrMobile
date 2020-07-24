@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:jdr/models/user.dart';
+import 'package:jdr/datamodels/user.dart';
 import 'jdr_networking_service.dart';
 
 const loginEndPoint = '/users/login';

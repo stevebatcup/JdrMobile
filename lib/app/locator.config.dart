@@ -11,6 +11,8 @@ import 'package:stacked_services/stacked_services.dart';
 import '../services/auth_service.dart';
 import '../services/lessons_service.dart';
 import '../services/third_party_services_module.dart';
+import '../ui/views/courses/courses_viewmodel.dart';
+import '../ui/views/lessons/lessons_viewmodel.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -25,6 +27,10 @@ void $initGetIt(GetIt g, {String environment}) {
       () => thirdPartyServicesModule.navigationService);
   gh.lazySingleton<SnackbarService>(
       () => thirdPartyServicesModule.snackBarService);
+
+  // Eager singletons must be registered in the right order
+  gh.singleton<CoursesViewModel>(CoursesViewModel());
+  gh.singleton<LessonsViewModel>(LessonsViewModel());
 }
 
 class _$ThirdPartyServicesModule extends ThirdPartyServicesModule {

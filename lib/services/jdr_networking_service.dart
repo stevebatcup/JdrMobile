@@ -37,7 +37,7 @@ class JdrNetworkingService {
     }
     http.Response response = await http.delete('$host$path', headers: headers);
 
-    if ([200].contains(response.statusCode)) {
+    if ([200, 204].contains(response.statusCode)) {
       return true;
     } else {
       print(response.statusCode);

@@ -23,20 +23,16 @@ class LoginViewModel extends BaseViewModel {
   bool showSpinner = false;
 
   LoginViewModel() {
-    if (_authService.currentUser != null) {
-      _navigationService.replaceWith(Routes.lessonsView);
-    } else {
-      focusNode1.addListener(() {
-        if (!focusNode1.hasFocus) {
-          formKey1.currentState.validate();
-        }
-      });
-      focusNode2.addListener(() {
-        if (!focusNode2.hasFocus) {
-          formKey2.currentState.validate();
-        }
-      });
-    }
+    focusNode1.addListener(() {
+      if (!focusNode1.hasFocus) {
+        formKey1.currentState.validate();
+      }
+    });
+    focusNode2.addListener(() {
+      if (!focusNode2.hasFocus) {
+        formKey2.currentState.validate();
+      }
+    });
   }
 
   final Function(String value) _emailValidator = (value) =>
@@ -73,7 +69,7 @@ class LoginViewModel extends BaseViewModel {
 
     stopSpinner();
     if (result.status == AuthResultStatus.success) {
-      _navigationService.replaceWith(Routes.lessonsView);
+      _navigationService.replaceWith(Routes.homeView);
       _dialogService
           .showDialog(
             title: 'Welcome ${_authService.currentUser.firstName}',

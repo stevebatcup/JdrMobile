@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-final Color primaryColor = Color(0xFF313241);
+final Color primaryColor = Color(0xFF313341);
 final Color onBackgroundColor = Color(0xFF565656);
 final Color onErrorColor = Color(0xFFc13a3f);
 
 final ColorScheme colorScheme = ColorScheme(
   primary: primaryColor,
-  primaryVariant: Color(0xFF52536C),
+  primaryVariant: Color(0xFF4A4D61),
   secondary: Color(0xFFdf004e),
   secondaryVariant: Color(0xFF930044),
   surface: Color(0xFFDCEBDC),
