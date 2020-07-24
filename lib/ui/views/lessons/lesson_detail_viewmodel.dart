@@ -1,22 +1,20 @@
 import 'package:injectable/injectable.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/app/router.gr.dart';
-import 'package:jdr/datamodels/lesson.dart';
 import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/services/jdr_networking_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 @singleton
-class LessonsViewModel extends BaseViewModel {
+class LessonDetailViewModel extends BaseViewModel {
   final AuthService _authService = locator<AuthService>();
   final NavigationService _navigationService = locator<NavigationService>();
   final JdrNetworkingService _networkService = JdrNetworkingService();
-  List<Lesson> lessons = [];
 
-  Future<void> loadLessons() async {
+  Future<void> loadLessonDetails(String slug) async {
     JdrNetworkingResponse result = await _networkService.getData(
-      '/lessons',
+      '/lessons/$slug',
       sessionCookie: _authService.sessionCookie,
     );
 
@@ -27,9 +25,5 @@ class LessonsViewModel extends BaseViewModel {
 
     print(result.jsonData);
     return null;
-  }
-
-  void showLesson() {
-    _navigationService.navigateTo(Routes.lessonDetailView);
   }
 }

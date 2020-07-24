@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
                 'Courses',
                 style: TextStyle(color: primaryColor),
               ),
-              icon: Icon(Icons.art_track, color: primaryColor),
+              icon: Icon(FontAwesomeIcons.clipboardList, color: primaryColor),
             ),
           ],
         ),

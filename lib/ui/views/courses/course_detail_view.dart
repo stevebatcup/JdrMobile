@@ -21,6 +21,13 @@ class CourseDetailView extends StatelessWidget {
             SizedBox(height: 10),
             RaisedButton(
               onPressed: () {
+                model.loadCourseDetails(2);
+              },
+              child: Text('Get course details'),
+            ),
+            SizedBox(height: 10),
+            RaisedButton(
+              onPressed: () {
                 model.showCourseLesson();
               },
               child: Text('Show course lesson 1'),

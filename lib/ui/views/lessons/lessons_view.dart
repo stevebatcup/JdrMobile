@@ -15,7 +15,7 @@ class LessonsView extends StatelessWidget {
           children: <Widget>[
             RaisedButton(
               onPressed: () {
-                model.getLessons();
+                model.loadLessons();
               },
               child: Text('Get Lessons'),
             ),
