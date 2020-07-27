@@ -13,5 +13,14 @@ class User {
     email = userData['email'];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['firstName'] = this.firstName;
+    data['lastName'] = this.lastName;
+    data['email'] = this.email;
+    return data;
+  }
+
   String get fullName => '$firstName $lastName';
 }

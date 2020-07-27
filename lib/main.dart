@@ -8,18 +8,19 @@ import 'app/jdr_http_overrides.dart';
 import 'app/locator.dart';
 import 'app/router.gr.dart';
 
-void main() {
+Future<void> main() async {
   HttpOverrides.global = JdrHttpOverrides();
-  setupLocator();
-  AuthService _authService = locator<AuthService>();
   WidgetsFlutterBinding.ensureInitialized();
-  _authService.loadCurrentUserDetails().then((status) {
-    if (status == true) {
-      runApp(JdrApp(intitialRoute: Routes.homeView));
-    } else {
-      runApp(JdrApp(intitialRoute: Routes.loginView));
-    }
-  });
+
+  await setupLocator();
+  AuthService _authService = locator<AuthService>();
+
+  bool loggedIn = await _authService.loadCurrentUserDetails();
+  if (loggedIn == true) {
+    runApp(JdrApp(intitialRoute: Routes.homeView));
+  } else {
+    runApp(JdrApp(intitialRoute: Routes.loginView));
+  }
 }
 
 class JdrApp extends StatelessWidget {

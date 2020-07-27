@@ -11,20 +11,21 @@ import 'package:stacked_services/stacked_services.dart';
 
 @singleton
 class LessonsViewModel extends BaseViewModel {
-  final AuthService _authService = locator<AuthService>();
-  final NavigationService _navigationService = locator<NavigationService>();
-  final JdrNetworkingService _networkService = JdrNetworkingService();
-  final ScrollController scrollController = ScrollController();
-  final RefreshController refreshController =
-      RefreshController(initialRefresh: false);
   bool loading = false;
   bool loadingFirstPage = true;
   int page = 1;
   int lessonsTotal;
   List<Lesson> lessons = [];
 
+  final AuthService _authService = locator<AuthService>();
+  final NavigationService _navigationService = locator<NavigationService>();
+  final JdrNetworkingService _networkService = JdrNetworkingService();
+  final ScrollController scrollController = ScrollController();
+  final RefreshController refreshController =
+      RefreshController(initialRefresh: false);
+
   LessonsViewModel() {
-    setupScrollistener();
+    onScroll();
   }
 
   void onRefresh() async {
@@ -37,7 +38,7 @@ class LessonsViewModel extends BaseViewModel {
     refreshController.refreshCompleted();
   }
 
-  void setupScrollistener() {
+  void onScroll() {
     scrollController.addListener(() {
       var triggerFetchMoreSize =
           0.9 * scrollController.position.maxScrollExtent;
