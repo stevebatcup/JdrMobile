@@ -29,11 +29,11 @@ class LessonsViewModel extends BaseViewModel {
   }
 
   void onRefresh() async {
-    print("onRefresh");
+    await Future.delayed(Duration(milliseconds: 1000));
     lessons = [];
     loadingFirstPage = true;
     notifyListeners();
-    await Future.delayed(Duration(milliseconds: 1500));
+    await Future.delayed(Duration(milliseconds: 500));
     await loadLessons();
     refreshController.refreshCompleted();
   }
@@ -56,8 +56,6 @@ class LessonsViewModel extends BaseViewModel {
       '/lessons?page=$page',
       sessionCookie: _authService.sessionCookie,
     );
-
-    print('/lessons?page=$page');
 
     if (result.jsonData['userAuthorisedForApp'] == false) {
       await _authService.signOut();

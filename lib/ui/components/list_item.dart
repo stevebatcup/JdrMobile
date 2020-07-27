@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:jdr/ui/components/list_item_author_avatar.dart';
+import 'package:jdr/ui/components/list_item_image.dart';
 
 class ListItem extends StatelessWidget {
   final int id;
@@ -26,37 +27,11 @@ class ListItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: boxHeight,
-                minHeight: boxHeight,
-                minWidth: boxWidth,
-              ),
-              child: id != -1
-                  ? CachedNetworkImage(
-                      imageUrl: image,
-                      placeholder: (context, url) => SizedBox(
-                        child: Center(
-                            child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Theme.of(context).colorScheme.secondary),
-                        )),
-                        width: 50.0,
-                        height: 50.0,
-                      ),
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.fitWidth,
-                          ),
-                        ),
-                      ),
-                    )
-                  : Container(
-                      width: boxWidth,
-                      color: Colors.grey,
-                    ),
+            ListItemImage(
+              boxHeight: boxHeight,
+              boxWidth: boxWidth,
+              id: id,
+              image: image,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -66,12 +41,9 @@ class ListItem extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(right: 14.0, top: 12.0),
-                    child: CircleAvatar(
-                      radius: 25,
-                      backgroundImage: (id != -1 && authorAvatar != null)
-                          ? NetworkImage(authorAvatar)
-                          : null,
-                      backgroundColor: Colors.blueGrey,
+                    child: ListItemAuthorAvatar(
+                      id: id,
+                      authorAvatar: authorAvatar,
                     ),
                   ),
                   Flexible(
