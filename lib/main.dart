@@ -1,12 +1,15 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/ui/utils/color_scheme.dart';
 import 'package:jdr/ui/utils/text_theme.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'app/jdr_http_overrides.dart';
 import 'app/locator.dart';
 import 'app/router.gr.dart';
 
 void main() {
+  HttpOverrides.global = JdrHttpOverrides();
   setupLocator();
   AuthService _authService = locator<AuthService>();
   WidgetsFlutterBinding.ensureInitialized();
