@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/app/router.gr.dart';
