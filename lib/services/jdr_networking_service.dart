@@ -36,7 +36,7 @@ class JdrNetworkingService {
       headers['Cookie'] = sessionCookie;
     }
     http.Response response = await http.delete('$host$path', headers: headers);
-
+    print(response.statusCode);
     if ([200, 204].contains(response.statusCode)) {
       return true;
     } else {

@@ -76,7 +76,7 @@ class LoginTextField extends HookViewModelWidget<LoginViewModel> {
               fontSize: 15,
               fontWeight: FontWeight.w800,
               letterSpacing: 1,
-              color: onErrorColor,
+              color: kOnErrorColor,
               height: 0.9,
               shadows: [Shadow(blurRadius: 5, color: Colors.black26)],
             ),

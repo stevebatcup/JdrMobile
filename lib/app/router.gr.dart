@@ -66,8 +66,11 @@ class Router extends RouterBase {
       );
     },
     LessonDetailView: (data) {
+      var args = data.getArgs<LessonDetailViewArguments>(
+        orElse: () => LessonDetailViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => LessonDetailView(),
+        builder: (context) => LessonDetailView(slug: args.slug),
         settings: data,
       );
     },
@@ -84,4 +87,14 @@ class Router extends RouterBase {
       );
     },
   };
+}
+
+/// ************************************************************************
+/// Arguments holder classes
+/// *************************************************************************
+
+/// LessonDetailView arguments holder class
+class LessonDetailViewArguments {
+  final String slug;
+  LessonDetailViewArguments({this.slug});
 }

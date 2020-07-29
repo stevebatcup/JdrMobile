@@ -39,6 +39,12 @@ dependencies:
   shimmer: ^1.1.1
   cached_network_image: ^2.2.0+1
   pull_to_refresh: ^1.6.0
+  vimeoplayer: ^0.1.2
+  video_player: ^0.10.11+2
+  chewie: 0.9.10
+  expandable: 4.1.4
+  flutter_html: ^1.0.0-pre.1
+
 
 
 dev_dependencies:

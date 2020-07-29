@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/app/router.gr.dart';
+import 'package:jdr/datamodels/lesson.dart';
 import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/services/jdr_networking_service.dart';
 import 'package:stacked/stacked.dart';
@@ -12,9 +13,12 @@ class LessonDetailViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final JdrNetworkingService _networkService = JdrNetworkingService();
 
+  bool loading = true;
+  Future<Lesson> lessonFuture;
+
   Future<void> loadLessonDetails(String slug) async {
     JdrNetworkingResponse result = await _networkService.getData(
-      '/lessons/$slug',
+      slug,
       sessionCookie: _authService.sessionCookie,
     );
 
@@ -23,7 +27,12 @@ class LessonDetailViewModel extends BaseViewModel {
       _navigationService.navigateTo(Routes.loginView);
     }
 
-    print(result.jsonData);
-    return null;
+    Lesson lesson = Lesson.fullFromJson(result.jsonData);
+    await lesson.videoReady;
+
+    lessonFuture = Future<Lesson>.value(lesson);
+
+    notifyListeners();
+    return lessonFuture;
   }
 }

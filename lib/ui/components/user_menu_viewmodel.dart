@@ -24,6 +24,7 @@ class UserMenuViewModel extends BaseViewModel {
   void onSelected(selection) {
     switch (selection) {
       case UserMenuOptions.signOut:
+        print('UserMenuOptions.signOut');
         signOut();
         break;
     }

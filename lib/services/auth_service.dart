@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/datamodels/user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'jdr_networking_service.dart';
 import 'local_storage_service.dart';
 
@@ -74,15 +73,15 @@ class AuthService {
   }
 
   Future<bool> signOut() async {
+    print("here1");
     bool result = await _networkService.delete(
       "/users/logout",
       sessionCookie: _sessionCookie,
     );
+    print("here2");
     _sessionCookie = null;
     _currentUser = null;
-
-    final prefs = await SharedPreferences.getInstance();
-    prefs.clear();
+    _storageService.clearUserData();
 
     return result;
   }

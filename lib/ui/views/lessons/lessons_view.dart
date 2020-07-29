@@ -45,6 +45,7 @@ class LessonsView extends StatelessWidget {
                 if (lesson.image != null) {
                   return ListItem(
                     id: lesson.id,
+                    path: lesson.path,
                     title: lesson.title,
                     image: lesson.image,
                     authorName: lesson.authorName,

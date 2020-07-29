@@ -22,7 +22,7 @@ class LoginView extends StatelessWidget {
             ),
             child: Center(
               child: ModalProgressHUD(
-                color: primaryColor,
+                color: kPrimaryColor,
                 inAsyncCall: model.showSpinner,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

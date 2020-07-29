@@ -17,22 +17,27 @@ class HomeView extends StatelessWidget {
           type: BottomNavigationBarType.shifting,
           currentIndex: model.currentIndex,
           onTap: model.setIndex,
+          showUnselectedLabels: true,
+          selectedFontSize: 15,
+          selectedIconTheme: IconThemeData(size: 26),
+          selectedItemColor: Colors.blueGrey,
+          unselectedItemColor: Colors.yellow,
           items: [
             BottomNavigationBarItem(
               backgroundColor: Colors.grey[100],
               title: Text(
                 'Lessons',
-                style: TextStyle(color: primaryColor),
+                style: TextStyle(color: kPrimaryColor),
               ),
-              icon: Icon(FontAwesomeIcons.drum, color: primaryColor),
+              icon: Icon(FontAwesomeIcons.drum, color: kPrimaryColor),
             ),
             BottomNavigationBarItem(
               backgroundColor: Colors.grey[100],
               title: Text(
                 'Courses',
-                style: TextStyle(color: primaryColor),
+                style: TextStyle(color: kPrimaryColor),
               ),
-              icon: Icon(FontAwesomeIcons.clipboardList, color: primaryColor),
+              icon: Icon(FontAwesomeIcons.clipboardList, color: kPrimaryColor),
             ),
           ],
         ),

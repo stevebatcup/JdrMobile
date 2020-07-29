@@ -19,7 +19,7 @@ final TextTheme textTheme = TextTheme(
         blurRadius: 4.0,
       ),
     ],
-    color: primaryColor,
+    color: kPrimaryColor,
   ),
   headline3: GoogleFonts.poppins(
     fontSize: 45,
@@ -33,13 +33,13 @@ final TextTheme textTheme = TextTheme(
   headline5: GoogleFonts.poppins(
     fontSize: 21,
     fontWeight: FontWeight.w400,
-    color: onBackgroundColor,
+    color: kOnBackgroundColor,
   ),
   headline6: GoogleFonts.poppins(
     fontSize: 17,
     fontWeight: FontWeight.w300,
     letterSpacing: 0.1,
-    color: onBackgroundColor,
+    color: kOnBackgroundColor,
   ),
   subtitle1: GoogleFonts.poppins(
     fontSize: 15,
@@ -75,7 +75,7 @@ final TextTheme textTheme = TextTheme(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     letterSpacing: 1,
-    backgroundColor: onErrorColor,
+    backgroundColor: kOnErrorColor,
     color: Colors.white,
   ),
 );

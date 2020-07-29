@@ -51,4 +51,9 @@ class LocalStorageService {
   set sessionCookie(String cookie) {
     _saveStringToDisk(SessionCookieKey, cookie);
   }
+
+  void clearUserData() {
+    print("clearUserData");
+    _preferences.clear();
+  }
 }
