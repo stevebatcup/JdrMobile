@@ -45,9 +45,11 @@ class LessonsView extends StatelessWidget {
                 if (lesson.image != null) {
                   return ListItem(
                     id: lesson.id,
-                    path: lesson.path,
                     title: lesson.title,
                     image: lesson.image,
+                    onTap: () {
+                      model.onItemTap(lesson);
+                    },
                     metaInfo: Text(
                       lesson.authorName,
                       style: kMetaInfoStyle,

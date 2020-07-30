@@ -53,6 +53,13 @@ class CoursesViewModel extends BaseViewModel {
     loading = false;
   }
 
+  void onTap(Course course) {
+    _navigationService.navigateTo(
+      Routes.courseDetailView,
+      arguments: CourseDetailViewArguments(path: course.path),
+    );
+  }
+
   void showCourse() {
     _navigationService.navigateTo(Routes.courseDetailView);
   }

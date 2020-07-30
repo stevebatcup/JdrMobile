@@ -9,13 +9,19 @@ class Video {
 
   Video.fromJson({this.id, this.url, this.host});
 
-  String _mp4File;
-  String get mp4File => _mp4File;
+  String _fileUrl;
+  String get fileUrl => _fileUrl;
 
   Future<void> buildMp4File() async {
-    SplayTreeMap<dynamic, dynamic> links =
-        await VimeoFileLinks(id.toString()).getLinks();
-    _mp4File = links[links.lastKey()];
+    if (host == 'vimeo') {
+      SplayTreeMap<dynamic, dynamic> links =
+          await VimeoFileLinks(id.toString()).getLinks();
+      _fileUrl = links[links.lastKey()];
+    } else if (host == 'youtube') {
+      _fileUrl = url;
+    } else if (host == 's3') {
+      _fileUrl = url;
+    }
   }
 }
 

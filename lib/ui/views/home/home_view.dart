@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
           unselectedItemColor: Colors.yellow,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: Colors.grey[100],
+              backgroundColor: Colors.grey[200],
               title: Text(
                 'Lessons',
                 style: TextStyle(color: kPrimaryColor),
@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
               icon: Icon(FontAwesomeIcons.drum, color: kPrimaryColor),
             ),
             BottomNavigationBarItem(
-              backgroundColor: Colors.grey[100],
+              backgroundColor: Colors.grey[200],
               title: Text(
                 'Courses',
                 style: TextStyle(color: kPrimaryColor),

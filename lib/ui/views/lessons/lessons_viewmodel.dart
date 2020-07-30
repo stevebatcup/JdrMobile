@@ -50,6 +50,13 @@ class LessonsViewModel extends BaseViewModel {
     });
   }
 
+  void onItemTap(Lesson lesson) {
+    _navigationService.navigateTo(
+      Routes.lessonDetailView,
+      arguments: LessonDetailViewArguments(path: lesson.path),
+    );
+  }
+
   Future<void> loadLessons() async {
     print("foo");
     loading = true;

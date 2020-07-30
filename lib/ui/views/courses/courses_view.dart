@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/datamodels/course.dart';
 import 'package:jdr/services/auth_service.dart';
@@ -48,6 +47,9 @@ class CoursesView extends StatelessWidget {
                     description: course.description,
                     title: '${course.title} course',
                     image: course.image,
+                    onTap: () {
+                      model.onTap(course);
+                    },
                     metaInfo: Container(
                       padding: EdgeInsets.only(top: 3),
                       child: Row(

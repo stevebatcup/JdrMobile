@@ -16,9 +16,9 @@ class LessonDetailViewModel extends BaseViewModel {
   bool loading = true;
   Future<Lesson> lessonFuture;
 
-  Future<void> loadLessonDetails(String slug) async {
+  Future<void> loadLessonDetails(String path) async {
     JdrNetworkingResponse result = await _networkService.getData(
-      slug,
+      path,
       sessionCookie: _authService.sessionCookie,
     );
 

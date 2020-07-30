@@ -16,8 +16,8 @@ import 'package:expandable/expandable.dart';
 class LessonDetailView extends StatelessWidget {
   final AuthService _authService = locator<AuthService>();
 
-  final String slug;
-  LessonDetailView({this.slug});
+  final String path;
+  LessonDetailView({this.path});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class LessonDetailView extends StatelessWidget {
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
         if (_authService.currentUser != null) {
-          model.loadLessonDetails(slug);
+          model.loadLessonDetails(path);
         }
       },
       builder: (context, model, child) => Scaffold(
@@ -57,7 +57,7 @@ class LessonDetailView extends StatelessWidget {
                     children: [
                       Container(
                         child: JdrVideoPlayer(
-                          fileUrl: lesson.mainVideo.mp4File,
+                          fileUrl: lesson.mainVideo.fileUrl,
                           placeholderImgUrl: lesson.image,
                         ),
                       ),

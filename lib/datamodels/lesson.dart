@@ -21,8 +21,8 @@ class Lesson {
 
   Lesson.basicFromJson(jsonData) {
     id = jsonData['id'];
-    path = jsonData['path'];
     title = jsonData['name'];
+    path = jsonData['path'];
     image = jsonData['image'];
     authorName = jsonData['author']['name'];
     authorAvatar = jsonData['author']['avatar'];

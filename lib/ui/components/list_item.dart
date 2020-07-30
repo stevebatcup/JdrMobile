@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jdr/app/locator.dart';
-import 'package:jdr/app/router.gr.dart';
 import 'package:jdr/ui/components/author_avatar.dart';
 import 'package:jdr/ui/components/list_item_image.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 const TextStyle kMetaInfoStyle = TextStyle(
   fontSize: 14,
@@ -11,40 +8,30 @@ const TextStyle kMetaInfoStyle = TextStyle(
 );
 
 class ListItem extends StatelessWidget {
-  final NavigationService _navigationService = locator<NavigationService>();
   final int id;
-  final String path;
   final String title;
   final String image;
+  final Function onTap;
   final Widget metaInfo;
   final String authorAvatar;
   final String description;
-  int screenDivisionFactor;
 
   ListItem({
     this.id,
-    this.path,
     this.title,
     this.image,
+    this.onTap,
     this.metaInfo,
     this.authorAvatar,
     this.description,
-  }) {
-    screenDivisionFactor = description != null ? 3 : 4;
-    print(screenDivisionFactor);
-  }
+  });
 
   @override
   Widget build(BuildContext context) {
     double boxWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-      onTap: () {
-        _navigationService.navigateTo(
-          Routes.lessonDetailView,
-          arguments: LessonDetailViewArguments(slug: path),
-        );
-      },
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.only(bottom: 25),
         child: Column(
@@ -73,7 +60,7 @@ class ListItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.only(top: 12.0),
+                        padding: EdgeInsets.only(top: 11.0),
                         child: id != -1
                             ? Text(
                                 '$title',

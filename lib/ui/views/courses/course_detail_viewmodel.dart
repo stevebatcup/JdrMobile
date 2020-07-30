@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/app/router.gr.dart';
+import 'package:jdr/datamodels/course.dart';
 import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/services/jdr_networking_service.dart';
 import 'package:stacked/stacked.dart';
@@ -11,10 +12,12 @@ class CourseDetailsViewModel extends BaseViewModel {
   final AuthService _authService = locator<AuthService>();
   final NavigationService _navigationService = locator<NavigationService>();
   final JdrNetworkingService _networkService = JdrNetworkingService();
+  Future<Course> courseFuture;
 
-  Future<void> loadCourseDetails(int id) async {
+  Future<void> loadCourseDetails(String path) async {
+    print(path);
     JdrNetworkingResponse result = await _networkService.getData(
-      '/courses/$id',
+      path,
       sessionCookie: _authService.sessionCookie,
     );
 
@@ -23,11 +26,10 @@ class CourseDetailsViewModel extends BaseViewModel {
       _navigationService.navigateTo(Routes.loginView);
     }
 
-    print(result.jsonData);
-    return null;
-  }
+    Course course = Course.fromJson(result.jsonData);
+    courseFuture = Future<Course>.value(course);
 
-  void showCourseLesson() {
-    _navigationService.navigateTo(Routes.lessonDetailView);
+    notifyListeners();
+    return courseFuture;
   }
 }
