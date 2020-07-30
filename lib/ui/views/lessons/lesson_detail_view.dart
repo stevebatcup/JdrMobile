@@ -149,8 +149,12 @@ class LessonDetailView extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 25.0),
+                                      padding: const EdgeInsets.only(
+                                        left: 25.0,
+                                        right: 25.0,
+                                        bottom: 25.0,
+                                        top: 5,
+                                      ),
                                       child: Column(
                                         children: lesson.downloadables
                                             .map((item) =>
