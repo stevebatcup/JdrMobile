@@ -48,7 +48,10 @@ class LessonsView extends StatelessWidget {
                     path: lesson.path,
                     title: lesson.title,
                     image: lesson.image,
-                    authorName: lesson.authorName,
+                    metaInfo: Text(
+                      lesson.authorName,
+                      style: kMetaInfoStyle,
+                    ),
                     authorAvatar: lesson.authorAvatar,
                   );
                 } else {

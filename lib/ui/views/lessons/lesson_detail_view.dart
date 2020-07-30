@@ -37,7 +37,9 @@ class LessonDetailView extends StatelessWidget {
           future: model.lessonFuture,
           builder: (context, AsyncSnapshot<Lesson> snapshot) {
             if (!snapshot.hasData) {
-              return Center(child: Text('loading...')); // add shimmer text
+              return Center(
+                child: CircularProgressIndicator(),
+              ); // add shimmer text
             }
 
             Lesson lesson = snapshot.data;

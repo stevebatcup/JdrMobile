@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/datamodels/course.dart';
 import 'package:jdr/services/auth_service.dart';
@@ -44,9 +45,26 @@ class CoursesView extends StatelessWidget {
                 if (course.image != null) {
                   return ListItem(
                     id: course.id,
-                    title: course.title,
+                    description: course.description,
+                    title: '${course.title} course',
                     image: course.image,
-                    authorName: course.authorName,
+                    metaInfo: Container(
+                      padding: EdgeInsets.only(top: 3),
+                      child: Row(
+                        children: <Widget>[
+                          Text(course.authorName, style: kMetaInfoStyle),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 5),
+                            child: Icon(
+                              Icons.fiber_manual_record,
+                              color: Colors.blueGrey,
+                              size: 10,
+                            ),
+                          ),
+                          Text(course.lessonCount, style: kMetaInfoStyle),
+                        ],
+                      ),
+                    ),
                     authorAvatar: course.authorAvatar,
                   );
                 } else {

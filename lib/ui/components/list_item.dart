@@ -5,26 +5,37 @@ import 'package:jdr/ui/components/author_avatar.dart';
 import 'package:jdr/ui/components/list_item_image.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+const TextStyle kMetaInfoStyle = TextStyle(
+  fontSize: 14,
+  color: Colors.blueGrey,
+);
+
 class ListItem extends StatelessWidget {
   final NavigationService _navigationService = locator<NavigationService>();
   final int id;
   final String path;
   final String title;
   final String image;
-  final String authorName;
+  final Widget metaInfo;
   final String authorAvatar;
+  final String description;
+  int screenDivisionFactor;
 
-  ListItem(
-      {this.id,
-      this.path,
-      this.title,
-      this.image,
-      this.authorName,
-      this.authorAvatar});
+  ListItem({
+    this.id,
+    this.path,
+    this.title,
+    this.image,
+    this.metaInfo,
+    this.authorAvatar,
+    this.description,
+  }) {
+    screenDivisionFactor = description != null ? 3 : 4;
+    print(screenDivisionFactor);
+  }
 
   @override
   Widget build(BuildContext context) {
-    double boxHeight = MediaQuery.of(context).size.height / 4;
     double boxWidth = MediaQuery.of(context).size.width;
 
     return GestureDetector(
@@ -35,18 +46,15 @@ class ListItem extends StatelessWidget {
         );
       },
       child: Container(
-        padding: EdgeInsets.zero,
-        height: boxHeight * 1.52,
+        padding: EdgeInsets.only(bottom: 25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             ListItemImage(
-              boxHeight: boxHeight,
-              boxWidth: boxWidth,
               id: id,
               image: image,
             ),
-            Padding(
+            Container(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -61,6 +69,7 @@ class ListItem extends StatelessWidget {
                   ),
                   Flexible(
                       child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
@@ -82,15 +91,16 @@ class ListItem extends StatelessWidget {
                                 width: boxWidth,
                               ),
                       ),
+                      if (description != null)
+                        Container(
+                          padding: EdgeInsets.only(top: 4),
+                          child: Text(
+                            description,
+                            style: TextStyle(fontSize: 14.5),
+                          ),
+                        ),
                       Container(
-                        child: id != -1
-                            ? Text(
-                                authorName,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                ),
-                              )
-                            : null,
+                        child: id != -1 ? metaInfo : null,
                       ),
                     ],
                   )),
