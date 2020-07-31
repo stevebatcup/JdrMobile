@@ -264,7 +264,7 @@ packages:
       name: flutter_full_pdf_viewer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.6"
+    version: "1.0.4"
   flutter_hooks:
     dependency: transitive
     description:

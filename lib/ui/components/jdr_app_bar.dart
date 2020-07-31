@@ -15,10 +15,13 @@ class JdrAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: <Widget>[
           Hero(
             tag: 'logo',
-            child: Container(
-              padding: EdgeInsets.only(),
-              width: MediaQuery.of(context).size.width * 0.4,
-              child: Image.asset('assets/images/logo.png'),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 200),
+              child: Container(
+                padding: EdgeInsets.only(),
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: Image.asset('assets/images/logo.png'),
+              ),
             ),
           ),
           UserMenu(),

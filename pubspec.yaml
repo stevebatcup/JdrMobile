@@ -44,7 +44,7 @@ dependencies:
   chewie: 0.9.10
   expandable: 4.1.4
   flutter_html: ^1.0.0-pre.1
-  flutter_full_pdf_viewer: ^1.0.6
+  flutter_full_pdf_viewer: 1.0.4
 
 
 dev_dependencies:
