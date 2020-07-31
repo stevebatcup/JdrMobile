@@ -26,13 +26,13 @@ class LocalStorageService {
 
   dynamic _getFromDisk(String key) {
     var value = _preferences.get(key);
-    print('(TRACE) LocalStorageService:_getFromDisk. key: $key value: $value');
+    // print('(TRACE) LocalStorageService:_getFromDisk. key: $key value: $value');
     return value;
   }
 
   void _saveStringToDisk(String key, String content) {
-    print(
-        '(TRACE) LocalStorageService:_saveStringToDisk. key: $key value: $content');
+    // print(
+    // '(TRACE) LocalStorageService:_saveStringToDisk. key: $key value: $content');
     _preferences.setString(key, content);
   }
 

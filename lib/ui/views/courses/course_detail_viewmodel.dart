@@ -15,7 +15,6 @@ class CourseDetailsViewModel extends BaseViewModel {
   Future<Course> courseFuture;
 
   Future<void> loadCourseDetails(String path) async {
-    print(path);
     JdrNetworkingResponse result = await _networkService.getData(
       path,
       sessionCookie: _authService.sessionCookie,

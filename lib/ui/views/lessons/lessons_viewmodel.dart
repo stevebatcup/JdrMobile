@@ -81,7 +81,7 @@ class LessonsViewModel extends BaseViewModel {
           ? '&root_category=${selectedCategory.id}'
           : '&root_category=${selectedCategory.rootCategoryId}&category=${selectedCategory.id}';
     }
-    print("$url %%%%%%");
+
     JdrNetworkingResponse result = await _networkService.getData(
       url,
       sessionCookie: _authService.sessionCookie,
@@ -95,8 +95,6 @@ class LessonsViewModel extends BaseViewModel {
     result.jsonData['items'].forEach((lessonData) {
       lessons.add(Lesson.basicFromJson(lessonData));
     });
-
-    print(lessons.length);
 
     if (page == 1 && result.jsonData.containsKey('total')) {
       lessonsTotal = result.jsonData['total'];
