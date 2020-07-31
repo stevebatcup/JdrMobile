@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jdr/ui/components/jdr_app_bar.dart';
 import 'package:jdr/ui/utils/color_scheme.dart';
+import 'package:jdr/ui/views/lessons/lessons_view.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -12,7 +13,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        appBar: JdrAppBar(),
+        backgroundColor: Colors.white,
+        appBar: JdrAppBar(
+            pageHasBottomSection: model.getView().runtimeType == LessonsView),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.shifting,
           currentIndex: model.currentIndex,

@@ -52,11 +52,9 @@ class LessonDetailView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        child: JdrVideoPlayer(
-                          fileUrl: lesson.mainVideo.fileUrl,
-                          placeholderImgUrl: lesson.image,
-                        ),
+                      JdrVideoPlayer(
+                        fileUrl: lesson.mainVideo.fileUrl,
+                        placeholderImgUrl: lesson.image,
                       ),
                       Expanded(
                         child: SingleChildScrollView(

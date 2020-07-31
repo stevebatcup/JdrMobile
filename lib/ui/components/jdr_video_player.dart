@@ -39,23 +39,25 @@ class _JdrVideoPlayerState extends State<JdrVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _initializeVideoPlayerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          setupChewieController();
-          return Chewie(
-            key: PageStorageKey(widget.fileUrl),
-            controller: _chewieController,
-          );
-        } else {
-          return Center(
-              child: Container(
-            padding: EdgeInsets.symmetric(vertical: 100.0),
-            child: CircularProgressIndicator(),
-          ));
-        }
-      },
+    return Container(
+      child: FutureBuilder(
+        future: _initializeVideoPlayerFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            setupChewieController();
+            return Chewie(
+              key: PageStorageKey(widget.fileUrl),
+              controller: _chewieController,
+            );
+          } else {
+            return Center(
+                child: Container(
+              padding: EdgeInsets.symmetric(vertical: 100.0),
+              child: CircularProgressIndicator(),
+            ));
+          }
+        },
+      ),
     );
   }
 

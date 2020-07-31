@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:jdr/app/locator.dart';
+import 'package:jdr/datamodels/category.dart';
 import 'package:jdr/datamodels/user.dart';
 import 'jdr_networking_service.dart';
 import 'local_storage_service.dart';
@@ -39,7 +40,7 @@ class AuthService {
     }
   }
 
-  Future<void> storeCurrentUserDetails() async {
+  void storeCurrentUserDetails() {
     _storageService.user = _currentUser;
     _storageService.sessionCookie = _sessionCookie;
   }
@@ -57,7 +58,13 @@ class AuthService {
     } else if (result.jsonData.containsKey('user')) {
       updateSessionCookie(result);
       _currentUser = User.fromJson(result.jsonData['user']);
-      await storeCurrentUserDetails();
+
+      storeCurrentUserDetails();
+      Category.storeCategories(
+        rootCategories: result.jsonData['rootCategories'],
+        categories: result.jsonData['categories'],
+      );
+
       return AuthResult(status: AuthResultStatus.success);
     }
     return null;

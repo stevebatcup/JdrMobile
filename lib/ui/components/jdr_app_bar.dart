@@ -3,12 +3,17 @@ import 'package:jdr/ui/components/user_menu.dart';
 import 'package:jdr/ui/utils/color_scheme.dart';
 
 class JdrAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final bool pageHasBottomSection;
+
+  JdrAppBar({this.pageHasBottomSection = false});
+
   @override
   Size get preferredSize => Size.fromHeight(55.0);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: pageHasBottomSection ? 0 : 4,
       backgroundColor: kPrimaryColor,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

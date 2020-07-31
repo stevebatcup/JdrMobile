@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:jdr/datamodels/category.dart';
 import 'package:jdr/datamodels/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,6 +9,8 @@ class LocalStorageService {
   static SharedPreferences _preferences;
   static const String UserKey = 'user';
   static const String SessionCookieKey = 'session_cookie';
+  static const String RootCategoriesKey = 'root_categories';
+  static const String CategoriesKey = 'categories';
 
   static Future<LocalStorageService> getInstance() async {
     if (_instance == null) {
@@ -54,5 +57,36 @@ class LocalStorageService {
 
   void clearUserData() {
     _preferences.clear();
+  }
+
+  void saveCategoriesList({List rootCategories, List categories}) {
+    _saveStringToDisk(RootCategoriesKey, json.encode(rootCategories));
+    _saveStringToDisk(CategoriesKey, json.encode(categories));
+  }
+
+  List<Category> getRootCategories() {
+    var rootCategoryJson = _getFromDisk(RootCategoriesKey);
+    List<Category> list = [];
+
+    if (rootCategoryJson != null) {
+      list = json.decode(rootCategoryJson).map<Category>((catJson) {
+        return Category.fromJson(catJson);
+      }).toList();
+    }
+    return list;
+  }
+
+  List<Category> getCategoriesForRootId(id) {
+    var categoryJson = _getFromDisk(CategoriesKey);
+    List<Category> list = [];
+
+    if (categoryJson != null) {
+      list = json
+          .decode(categoryJson)
+          .where((cat) => cat['rootCategoryId'] == id)
+          .map<Category>((catJson) => Category.fromJson(catJson))
+          .toList();
+    }
+    return list;
   }
 }
