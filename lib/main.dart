@@ -30,7 +30,6 @@ class JdrApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       navigatorKey: locator<NavigationService>().navigatorKey,
       theme: ThemeData(
         colorScheme: colorScheme,
