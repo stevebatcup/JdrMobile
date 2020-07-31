@@ -28,7 +28,7 @@ class _JdrVideoPlayerState extends State<JdrVideoPlayer> {
   void setupChewieController() {
     _chewieController = ChewieController(
       allowFullScreen: false,
-      showControlsOnInitialize: false,
+      showControlsOnInitialize: true,
       videoPlayerController: _videoController,
       aspectRatio: 16 / 9,
       autoInitialize: true,
