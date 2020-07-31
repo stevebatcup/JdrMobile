@@ -73,12 +73,10 @@ class AuthService {
   }
 
   Future<bool> signOut() async {
-    print("here1");
     bool result = await _networkService.delete(
       "/users/logout",
       sessionCookie: _sessionCookie,
     );
-    print("here2");
     _sessionCookie = null;
     _currentUser = null;
     _storageService.clearUserData();

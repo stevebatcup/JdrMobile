@@ -49,8 +49,6 @@ class CourseDetailView extends StatelessWidget {
             return LayoutBuilder(
               builder:
                   (BuildContext context, BoxConstraints viewportConstraints) {
-                print(viewportConstraints.maxHeight);
-
                 return ConstrainedBox(
                   constraints:
                       BoxConstraints(maxHeight: viewportConstraints.maxHeight),

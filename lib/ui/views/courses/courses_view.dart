@@ -16,7 +16,7 @@ class CoursesView extends StatelessWidget {
     return ViewModelBuilder<CoursesViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
-      fireOnModelReadyOnce: true,
+      fireOnModelReadyOnce: false,
       onModelReady: (model) {
         if (_authService.currentUser != null) {
           model.loadCourses();

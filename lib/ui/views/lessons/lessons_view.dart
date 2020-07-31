@@ -16,7 +16,7 @@ class LessonsView extends StatelessWidget {
     return ViewModelBuilder<LessonsViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
-      fireOnModelReadyOnce: true,
+      fireOnModelReadyOnce: false,
       onModelReady: (model) {
         if (_authService.currentUser != null) {
           model.loadLessons();

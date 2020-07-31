@@ -58,7 +58,6 @@ class LessonsViewModel extends BaseViewModel {
   }
 
   Future<void> loadLessons() async {
-    print("foo");
     loading = true;
     JdrNetworkingResponse result = await _networkService.getData(
       '/lessons?page=$page',
@@ -69,8 +68,6 @@ class LessonsViewModel extends BaseViewModel {
       await _authService.signOut();
       _navigationService.navigateTo(Routes.loginView);
     }
-
-    print(result.jsonData['items'].length);
 
     result.jsonData['items'].forEach((lessonData) {
       lessons.add(Lesson.basicFromJson(lessonData));

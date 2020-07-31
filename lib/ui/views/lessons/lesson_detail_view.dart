@@ -23,8 +23,7 @@ class LessonDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<LessonDetailViewModel>.reactive(
       viewModelBuilder: () => LessonDetailViewModel(),
-      disposeViewModel: false,
-      initialiseSpecialViewModelsOnce: true,
+      disposeViewModel: true,
       fireOnModelReadyOnce: true,
       onModelReady: (model) {
         if (_authService.currentUser != null) {
@@ -46,8 +45,6 @@ class LessonDetailView extends StatelessWidget {
             return LayoutBuilder(
               builder:
                   (BuildContext context, BoxConstraints viewportConstraints) {
-                print(viewportConstraints.maxHeight);
-
                 return ConstrainedBox(
                   constraints:
                       BoxConstraints(maxHeight: viewportConstraints.maxHeight),
@@ -69,7 +66,7 @@ class LessonDetailView extends StatelessWidget {
                               SizedBox(height: 20),
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0),
+                                    horizontal: 20.0),
                                 child: Text(
                                   lesson.title,
                                   textAlign: TextAlign.center,
@@ -105,7 +102,7 @@ class LessonDetailView extends StatelessWidget {
                               SizedBox(height: 18),
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0),
+                                    horizontal: 20.0),
                                 child: lesson.content.length > 0
                                     ? ExpandablePanel(
                                         header: LessonIntro(lesson: lesson),
@@ -138,7 +135,7 @@ class LessonDetailView extends StatelessWidget {
                                     ),
                                     Container(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 25.0),
+                                          horizontal: 20.0),
                                       child: Text(
                                         "PDFs",
                                         textAlign: TextAlign.left,

@@ -53,7 +53,6 @@ class LocalStorageService {
   }
 
   void clearUserData() {
-    print("clearUserData");
     _preferences.clear();
   }
 }
