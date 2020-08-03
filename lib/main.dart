@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/ui/utils/color_scheme.dart';
@@ -11,6 +14,8 @@ import 'app/router.gr.dart';
 Future<void> main() async {
   HttpOverrides.global = JdrHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
+  Crashlytics.instance.enableInDevMode = false;
+  FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   await setupLocator();
   AuthService _authService = locator<AuthService>();
@@ -31,6 +36,9 @@ class JdrApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: locator<NavigationService>().navigatorKey,
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+      ],
       theme: ThemeData(
         colorScheme: colorScheme,
         textTheme: textTheme,
