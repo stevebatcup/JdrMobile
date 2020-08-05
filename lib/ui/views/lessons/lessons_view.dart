@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/datamodels/category.dart';
 import 'package:jdr/datamodels/lesson.dart';
@@ -15,6 +16,8 @@ class LessonsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return ViewModelBuilder<LessonsViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,

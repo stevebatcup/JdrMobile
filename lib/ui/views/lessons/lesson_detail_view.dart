@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_html/style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jdr/app/locator.dart';
@@ -21,6 +22,12 @@ class LessonDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+    ]);
+
     return ViewModelBuilder<LessonDetailViewModel>.reactive(
       viewModelBuilder: () => LessonDetailViewModel(),
       disposeViewModel: true,
@@ -38,7 +45,7 @@ class LessonDetailView extends StatelessWidget {
             if (!snapshot.hasData) {
               return Center(
                 child: CircularProgressIndicator(),
-              ); // add shimmer text
+              );
             }
 
             Lesson lesson = snapshot.data;

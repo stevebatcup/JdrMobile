@@ -20,10 +20,7 @@ class ListItemImage extends StatelessWidget {
               imageUrl: image,
               placeholder: (context, url) => SizedBox(
                 child: Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                        Theme.of(context).colorScheme.secondary),
-                  ),
+                  child: CircularProgressIndicator(),
                 ),
               ),
               imageBuilder: (context, imageProvider) => Container(

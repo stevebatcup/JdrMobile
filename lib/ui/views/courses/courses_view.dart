@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:jdr/app/locator.dart';
 import 'package:jdr/datamodels/course.dart';
 import 'package:jdr/services/auth_service.dart';
@@ -13,6 +14,8 @@ class CoursesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return ViewModelBuilder<CoursesViewModel>.reactive(
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,

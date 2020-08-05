@@ -9,6 +9,8 @@ import 'login_viewmodel.dart';
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return ViewModelBuilder<LoginViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         backgroundColor: Color(0XFF08080A),

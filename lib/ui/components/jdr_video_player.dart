@@ -1,5 +1,6 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 
 class JdrVideoPlayer extends StatefulWidget {
@@ -27,7 +28,13 @@ class _JdrVideoPlayerState extends State<JdrVideoPlayer> {
 
   void setupChewieController() {
     _chewieController = ChewieController(
-      allowFullScreen: false,
+      showControls: true,
+      deviceOrientationsAfterFullScreen: <DeviceOrientation>[
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.portraitUp,
+      ],
+      allowFullScreen: true,
       showControlsOnInitialize: true,
       videoPlayerController: _videoController,
       aspectRatio: 16 / 9,
@@ -45,9 +52,13 @@ class _JdrVideoPlayerState extends State<JdrVideoPlayer> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             setupChewieController();
-            return Chewie(
-              key: PageStorageKey(widget.fileUrl),
-              controller: _chewieController,
+            return ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.shortestSide),
+              child: Chewie(
+                key: PageStorageKey(widget.fileUrl),
+                controller: _chewieController,
+              ),
             );
           } else {
             return Center(
