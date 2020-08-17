@@ -25,15 +25,15 @@ class CourseDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CourseDetailsViewModel>.reactive(
-      disposeViewModel: false,
+      viewModelBuilder: () => CourseDetailsViewModel(),
+      disposeViewModel: true,
       initialiseSpecialViewModelsOnce: true,
-      fireOnModelReadyOnce: true,
+      fireOnModelReadyOnce: false,
       onModelReady: (model) {
         if (_authService.currentUser != null) {
           model.loadCourseDetails(path);
         }
       },
-      viewModelBuilder: () => locator<CourseDetailsViewModel>(),
       builder: (context, model, child) => Scaffold(
         appBar: JdrAppBar(),
         body: FutureBuilder<Course>(
@@ -71,6 +71,7 @@ class CourseDetailView extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 22,
+                                  color: Color(0XFF333333),
                                 ),
                               ),
                               Text(
@@ -80,7 +81,10 @@ class CourseDetailView extends StatelessWidget {
                               SizedBox(height: 20),
                               Text(
                                 course.description,
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0XFF333333),
+                                ),
                               ),
                               SizedBox(height: 20),
                               Container(
@@ -124,9 +128,13 @@ class CourseDetailView extends StatelessWidget {
                               ),
                               Row(
                                 children: <Widget>[
-                                  Text('${course.lessonCount}',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600)),
+                                  Text(
+                                    '${course.lessonCount}',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0XFF333333),
+                                    ),
+                                  ),
                                   Text(' in this course'),
                                 ],
                               ),
@@ -138,9 +146,13 @@ class CourseDetailView extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Text('Difficulty: '),
-                                  Text(course.skillLevelList(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600)),
+                                  Text(
+                                    course.skillLevelList(),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0XFF333333),
+                                    ),
+                                  ),
                                 ],
                               ),
                               Divider(
@@ -153,8 +165,10 @@ class CourseDetailView extends StatelessWidget {
                                   Text('Released on '),
                                   Text(
                                     course.publishedAt,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0XFF333333),
+                                    ),
                                   ),
                                 ],
                               ),

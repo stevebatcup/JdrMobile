@@ -117,14 +117,20 @@ class LessonDetailView extends StatelessWidget {
                                         expanded: Padding(
                                           padding: const EdgeInsets.only(
                                               bottom: 12.0),
-                                          child: Html(
-                                            data: lesson.content,
-                                            style: {
-                                              "p": Style(
-                                                margin: EdgeInsets.zero,
-                                                fontSize: FontSize(16),
-                                              ),
-                                            },
+                                          child: MediaQuery(
+                                            data: MediaQuery.of(context)
+                                                .copyWith(textScaleFactor: 1),
+                                            child: Html(
+                                              data: lesson.content,
+                                              style: {
+                                                "p": Style(
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 12.0),
+                                                  fontSize: FontSize(16),
+                                                  color: Color(0XFF333333),
+                                                ),
+                                              },
+                                            ),
                                           ),
                                         ),
                                       )

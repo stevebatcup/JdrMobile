@@ -59,8 +59,4 @@ class CoursesViewModel extends BaseViewModel {
       arguments: CourseDetailViewArguments(path: course.path),
     );
   }
-
-  void showCourse() {
-    _navigationService.navigateTo(Routes.courseDetailView);
-  }
 }

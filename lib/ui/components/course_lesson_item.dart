@@ -49,7 +49,11 @@ class CourseLessonItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     lesson.title,
-                    style: TextStyle(fontWeight: FontWeight.w600, height: 1.3),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      height: 1.3,
+                      color: Color(0XFF333333),
+                    ),
                   ),
                 ),
               ],

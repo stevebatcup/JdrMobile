@@ -26,12 +26,18 @@ class LessonIntro extends StatelessWidget {
           ),
         ),
         Flexible(
-          child: Text(
-            lesson.excerpt,
-            softWrap: true,
-            maxLines: 6,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 16),
+          child: MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+            child: Text(
+              lesson.excerpt,
+              softWrap: true,
+              maxLines: 6,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0XFF333333),
+              ),
+            ),
           ),
         ),
       ],

@@ -68,6 +68,7 @@ class ListItem extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16.6,
                                   height: 1.4,
+                                  color: Color(0XFF333333),
                                 ),
                               )
                             : Container(
@@ -83,7 +84,10 @@ class ListItem extends StatelessWidget {
                           padding: EdgeInsets.only(top: 4),
                           child: Text(
                             description,
-                            style: TextStyle(fontSize: 14.5),
+                            style: TextStyle(
+                              fontSize: 14.5,
+                              color: Color(0XFF333333),
+                            ),
                           ),
                         ),
                       Container(

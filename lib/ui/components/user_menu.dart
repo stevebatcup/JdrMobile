@@ -25,6 +25,7 @@ class UserMenu extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15.0,
                     fontWeight: FontWeight.w600,
+                    color: Color(0XFF333333),
                   ),
                 ),
               ),
@@ -43,7 +44,10 @@ class UserMenu extends StatelessWidget {
                     SizedBox(width: 8.0),
                     Text(
                       'Sign out',
-                      style: TextStyle(fontSize: 15.0),
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Color(0XFF333333),
+                      ),
                     ),
                   ],
                 ),

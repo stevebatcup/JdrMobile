@@ -39,6 +39,7 @@ class LoginTextField extends HookViewModelWidget<LoginViewModel> {
           keyboardType: keyboardType,
           obscureText: obscureText,
           onChanged: onChanged,
+          style: TextStyle(color: Colors.black87),
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(

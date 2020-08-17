@@ -39,7 +39,7 @@ class JdrApp extends StatelessWidget {
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
       ],
-      theme: ThemeData(
+      theme: ThemeData.light().copyWith(
         colorScheme: colorScheme,
         textTheme: textTheme,
         visualDensity: VisualDensity.adaptivePlatformDensity,
