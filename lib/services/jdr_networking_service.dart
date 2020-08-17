@@ -6,16 +6,16 @@ const String host = 'https://www.jazzdrummersresource.com';
 // const String host = 'http://10.0.2.2:3000';
 
 class JdrNetworkingService {
-  final Map<String, String> headers = {
+  final Map<String, String> defaultHeaders = {
     'X-MobileApp': '1',
     'Accept': 'application/json',
   };
 
   Future<JdrNetworkingResponse> getData(String path,
       {String sessionCookie}) async {
-    if (sessionCookie != null) {
-      headers['Cookie'] = sessionCookie;
-    }
+    Map<String, String> headers = Map.from(defaultHeaders);
+    if (sessionCookie != null) headers['Cookie'] = sessionCookie;
+
     http.Response response = await http.get('$host$path', headers: headers);
 
     if ([200, 422, 401].contains(response.statusCode)) {
@@ -32,9 +32,8 @@ class JdrNetworkingService {
   }
 
   Future<bool> delete(String path, {String sessionCookie}) async {
-    if (sessionCookie != null) {
-      headers['Cookie'] = sessionCookie;
-    }
+    Map<String, String> headers = Map.from(defaultHeaders);
+    if (sessionCookie != null) headers['Cookie'] = sessionCookie;
     http.Response response = await http.delete('$host$path', headers: headers);
 
     if ([200, 204].contains(response.statusCode)) {
@@ -47,9 +46,9 @@ class JdrNetworkingService {
 
   Future<JdrNetworkingResponse> postData(String path,
       {Map postData, String sessionCookie}) async {
-    if (sessionCookie != null) {
-      headers['Cookie'] = sessionCookie;
-    }
+    Map<String, String> headers = Map.from(defaultHeaders);
+    if (sessionCookie != null) headers['Cookie'] = sessionCookie;
+
     http.Response response =
         await http.post('$host$path', body: postData, headers: headers);
 
