@@ -31,7 +31,7 @@ class LessonIntro extends StatelessWidget {
             child: Text(
               lesson.excerpt,
               softWrap: true,
-              maxLines: 6,
+              maxLines: 20,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 16,
