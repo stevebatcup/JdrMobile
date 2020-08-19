@@ -129,6 +129,13 @@ class LessonDetailView extends StatelessWidget {
                                                   fontSize: FontSize(16),
                                                   color: Color(0XFF333333),
                                                 ),
+                                                "ul": Style(
+                                                    margin: EdgeInsets.only(
+                                                        bottom: 12)),
+                                                "li": Style(
+                                                  fontSize: FontSize(16),
+                                                  color: Color(0XFF333333),
+                                                ),
                                               },
                                             ),
                                           ),
