@@ -16,7 +16,7 @@ class JdrSnackBar {
       title: title,
       shouldIconPulse: false,
       barBlur: 7.0,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 7),
       backgroundColor: Color(0X99444444),
       snackPosition: SnackPosition.TOP,
       margin: EdgeInsets.symmetric(horizontal: 10.0),

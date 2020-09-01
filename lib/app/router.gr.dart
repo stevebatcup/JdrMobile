@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import '../ui/views/courses/course_detail_view.dart';
 import '../ui/views/courses/courses_view.dart';
 import '../ui/views/home/home_view.dart';
+import '../ui/views/in_app_subscribe/in_app_subscribe_view.dart';
 import '../ui/views/lessons/lesson_detail_view.dart';
 import '../ui/views/lessons/lessons_view.dart';
 import '../ui/views/login/login_view.dart';
@@ -23,6 +24,7 @@ class Routes {
   static const String lessonDetailView = '/lesson-detail-view';
   static const String coursesView = '/courses-view';
   static const String courseDetailView = '/course-detail-view';
+  static const String inAppSubscribeView = '/in-app-subscribe-view';
   static const all = <String>{
     homeView,
     loginView,
@@ -30,6 +32,7 @@ class Routes {
     lessonDetailView,
     coursesView,
     courseDetailView,
+    inAppSubscribeView,
   };
 }
 
@@ -43,6 +46,7 @@ class Router extends RouterBase {
     RouteDef(Routes.lessonDetailView, page: LessonDetailView),
     RouteDef(Routes.coursesView, page: CoursesView),
     RouteDef(Routes.courseDetailView, page: CourseDetailView),
+    RouteDef(Routes.inAppSubscribeView, page: InAppSubscribeView),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -86,6 +90,12 @@ class Router extends RouterBase {
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => CourseDetailView(path: args.path),
+        settings: data,
+      );
+    },
+    InAppSubscribeView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => InAppSubscribeView(),
         settings: data,
       );
     },

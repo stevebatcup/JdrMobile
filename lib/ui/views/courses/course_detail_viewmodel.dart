@@ -22,7 +22,7 @@ class CourseDetailsViewModel extends BaseViewModel {
 
     if (result.jsonData['userAuthorisedForApp'] == false) {
       await _authService.signOut();
-      _navigationService.navigateTo(Routes.loginView);
+      _navigationService.replaceWith(Routes.loginView);
     }
 
     Course course = Course.fromJson(result.jsonData);

@@ -15,8 +15,9 @@ enum AuthResultStatus {
 class AuthResult {
   final String message;
   final AuthResultStatus status;
+  final bool requiresNewSubscription;
 
-  AuthResult({this.status, this.message});
+  AuthResult({this.status, this.message, this.requiresNewSubscription});
 }
 
 @singleton
@@ -54,18 +55,29 @@ class AuthService {
         await _networkService.postData(loginEndPoint, postData: postData);
     if (result.jsonData.containsKey('error')) {
       return AuthResult(
-          status: AuthResultStatus.error, message: result.jsonData['error']);
+        status: AuthResultStatus.error,
+        message: result.jsonData['error'],
+        requiresNewSubscription: false,
+      );
     } else if (result.jsonData.containsKey('user')) {
       updateSessionCookie(result);
       _currentUser = User.fromJson(result.jsonData['user']);
 
       storeCurrentUserDetails();
+      bool iosAppMustSubscribe = false;
+      if (result.jsonData.containsKey('iosAppMustSubscribe')) {
+        iosAppMustSubscribe = result.jsonData['iosAppMustSubscribe'];
+      }
+
       Category.storeCategories(
         rootCategories: result.jsonData['rootCategories'],
         categories: result.jsonData['categories'],
       );
 
-      return AuthResult(status: AuthResultStatus.success);
+      return AuthResult(
+        status: AuthResultStatus.success,
+        requiresNewSubscription: iosAppMustSubscribe,
+      );
     }
     return null;
   }

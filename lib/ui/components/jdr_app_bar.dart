@@ -4,8 +4,12 @@ import 'package:jdr/ui/utils/color_scheme.dart';
 
 class JdrAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool pageHasBottomSection;
+  final bool showUserMenu;
 
-  JdrAppBar({this.pageHasBottomSection = false});
+  JdrAppBar({
+    this.pageHasBottomSection = false,
+    this.showUserMenu = true,
+  });
 
   @override
   Size get preferredSize => Size.fromHeight(55.0);
@@ -13,6 +17,7 @@ class JdrAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: !showUserMenu,
       elevation: pageHasBottomSection ? 0 : 4,
       backgroundColor: kPrimaryColor,
       title: Row(
@@ -29,7 +34,7 @@ class JdrAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
-          UserMenu(),
+          if (showUserMenu) UserMenu(),
         ],
       ),
     );

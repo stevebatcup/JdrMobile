@@ -15,7 +15,8 @@ class HomeView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         backgroundColor: Colors.white,
         appBar: JdrAppBar(
-            pageHasBottomSection: model.getView().runtimeType == LessonsView),
+          pageHasBottomSection: model.getView().runtimeType == LessonsView,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.shifting,
           currentIndex: model.currentIndex,

@@ -89,7 +89,7 @@ class LessonsViewModel extends BaseViewModel {
 
     if (result.jsonData['userAuthorisedForApp'] == false) {
       await _authService.signOut();
-      _navigationService.navigateTo(Routes.loginView);
+      _navigationService.replaceWith(Routes.loginView);
     }
 
     result.jsonData['items'].forEach((lessonData) {

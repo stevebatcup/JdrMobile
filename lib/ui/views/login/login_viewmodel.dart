@@ -46,7 +46,7 @@ class LoginViewModel extends BaseViewModel {
   void onSubmit() {
     FocusManager.instance.primaryFocus.unfocus();
     if (formKey1.currentState.validate() && formKey2.currentState.validate()) {
-      submitLoginDetailstoServer();
+      login();
     }
   }
 
@@ -60,7 +60,7 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future<void> submitLoginDetailstoServer() async {
+  Future<void> login() async {
     startSpinner();
     AuthResult result = await _authService.signInWithEmail(
       email: submittedEmail,
@@ -69,13 +69,11 @@ class LoginViewModel extends BaseViewModel {
 
     stopSpinner();
     if (result.status == AuthResultStatus.success) {
-      _navigationService.replaceWith(Routes.homeView);
-      // _dialogService
-      //     .showDialog(
-      //       title: 'Welcome ${_authService.currentUser.firstName}',
-      //       description: 'Thanks for logging in!',
-      //     )
-      //     .catchError((e) {});
+      print(result.requiresNewSubscription);
+      String navigateTo = result.requiresNewSubscription
+          ? Routes.inAppSubscribeView
+          : Routes.homeView;
+      _navigationService.replaceWith(navigateTo);
     } else {
       JdrSnackBar.show(
         message: result.message,

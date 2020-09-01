@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -7,7 +9,7 @@ const String host = 'https://www.jazzdrummersresource.com';
 
 class JdrNetworkingService {
   final Map<String, String> defaultHeaders = {
-    'X-MobileApp': '1',
+    'X-MobileApp': Platform.isIOS ? 'ios' : 'android',
     'Accept': 'application/json',
   };
 
@@ -46,6 +48,7 @@ class JdrNetworkingService {
 
   Future<JdrNetworkingResponse> postData(String path,
       {Map postData, String sessionCookie}) async {
+    print(defaultHeaders);
     Map<String, String> headers = Map.from(defaultHeaders);
     if (sessionCookie != null) headers['Cookie'] = sessionCookie;
 
