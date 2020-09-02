@@ -3,6 +3,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:jdr/services/auth_service.dart';
 import 'package:jdr/ui/utils/color_scheme.dart';
 import 'package:jdr/ui/utils/text_theme.dart';
@@ -16,6 +17,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Crashlytics.instance.enableInDevMode = false;
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
+
+  if (Platform.isIOS) {
+    InAppPurchaseConnection.enablePendingPurchases();
+  }
 
   await setupLocator();
   AuthService _authService = locator<AuthService>();

@@ -12,6 +12,9 @@ class InAppSubscribeView extends StatelessWidget {
 
     return ViewModelBuilder<InAppSubscribeViewModel>.reactive(
       viewModelBuilder: () => InAppSubscribeViewModel(),
+      onModelReady: (model) {
+        model.initInAppPurchases();
+      },
       builder: (context, model, child) => Scaffold(
         appBar: JdrAppBar(showUserMenu: false),
         backgroundColor: Colors.white,
@@ -22,45 +25,61 @@ class InAppSubscribeView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 17,
-                      height: 1.5,
-                      color: Theme.of(context).colorScheme.onBackground,
+                  if (model.loading) Text('Connect to app store...'),
+                  if (model.isAvailable)
+                    Column(
+                      children: [
+                        Text(
+                          'You need to be a subscriber to access the content in this app. To become a subscriber, please click the button to purchase a one-month subscription. A subscription also unlocks all the on-site content available at www.jazzdrummersresource.com',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 17,
+                            height: 1.5,
+                            color: Theme.of(context).colorScheme.onBackground,
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: RaisedButton(
+                            onPressed: () {
+                              if (!model.purchasePending)
+                                model.buySubscription();
+                            },
+                            elevation: model.purchasePending ? 0 : 3,
+                            child: Text(model.purchasePending
+                                ? 'Setting up subscription...'
+                                : 'Subscribe now for \$25.00'),
+                            color: model.purchasePending
+                                ? Colors.green[100]
+                                : Colors.green[600],
+                            textColor: model.purchasePending
+                                ? Colors.grey[400]
+                                : Colors.white,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 40,
+                              vertical: 14,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        Text('OR',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onBackground,
+                            )),
+                        SizedBox(height: 15),
+                        GestureDetector(
+                          onTap: model.signOut,
+                          child: Text(
+                            'Sign Out',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onBackground,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(height: 30),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: RaisedButton(
-                      onPressed: () {},
-                      child: Text('Subscribe now for \$25.00'),
-                      color: Colors.green[600],
-                      textColor: Colors.white,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 14,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Text('OR',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      )),
-                  SizedBox(height: 15),
-                  GestureDetector(
-                    onTap: model.signOut,
-                    child: Text(
-                      'Sign Out',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onBackground,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

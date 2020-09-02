@@ -48,7 +48,6 @@ class JdrNetworkingService {
 
   Future<JdrNetworkingResponse> postData(String path,
       {Map postData, String sessionCookie}) async {
-    print(defaultHeaders);
     Map<String, String> headers = Map.from(defaultHeaders);
     if (sessionCookie != null) headers['Cookie'] = sessionCookie;
 
