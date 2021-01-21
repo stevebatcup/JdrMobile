@@ -25,7 +25,7 @@ class InAppSubscribeView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (model.loading) Text('Connect to app store...'),
+                  if (model.loading) CircularProgressIndicator(),
                   if (model.isAvailable)
                     Column(
                       children: [

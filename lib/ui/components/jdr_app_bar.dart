@@ -17,6 +17,7 @@ class JdrAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: showUserMenu,
       elevation: pageHasBottomSection ? 0 : 4,
       backgroundColor: kPrimaryColor,
       title: Row(
