@@ -49,7 +49,7 @@ dependencies:
   firebase_core: ^0.4.5
   firebase_analytics: ^5.0.16
   firebase_crashlytics: 0.1.4+1
-  in_app_purchase: ^0.3.4+5
+  in_app_purchase: 0.5.2
 
 
 dev_dependencies:
